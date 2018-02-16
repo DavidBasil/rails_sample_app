@@ -65,6 +65,11 @@ class User < ApplicationRecord
 		UserMailer.password_reset(self).deliver_now
 	end
 
+	# user's status feed
+	def feed
+		Micropost.where("user_id = ?", id)
+	end
+
 	private
 		
 		# converts email to all lower-case
